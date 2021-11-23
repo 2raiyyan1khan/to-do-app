@@ -1,20 +1,37 @@
 import React from "react";
-import { connect } from "react-redux";
-import { addTodoItem, removeTodoItem } from "./redux/ActionCreators";
 import TodoForm from "./TodoForm";
 import TodoList from "./TodoList";
 
 class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      todos: [],
+    };
+  }
   submitHandle = (todoInput) => {
+    this.setState((state) => {
+      let todosLength = state.todos.length;
+      let id = todosLength ? state.todos[todosLength - 1].id + 1 : 1;
+      return {
+        todos: [...state.todos, { id: id, task: todoInput }],
+      };
+    });
     this.props.addTodo(todoInput);
   };
 
   removeTodo = (id) => {
+    this.setState((prevState) => {
+      let todos = prevState.todos.filter((todo) => todo.id !== id);
+      return {
+        todos: [...todos],
+      };
+    });
     this.props.removeTodo(id);
   };
 
   render() {
-    let todos = this.props.todos.todos;
+    let todos = this.state.todos;
     return (
       <div className="container">
         <div className="input-bar">
@@ -37,15 +54,5 @@ class App extends React.Component {
     );
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    todos: state,
-  };
-};
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addTodo: (todo) => dispatch(addTodoItem(todo)),
-    removeTodo: (id) => dispatch(removeTodoItem(id)),
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+
+export default App;

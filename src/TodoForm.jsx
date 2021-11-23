@@ -13,17 +13,13 @@ class TodoForm extends React.Component {
       this.props.submitHandle(this.state.todoInput);
     }
 
-    this.setState((prevState) => {
-      return {
-        todoInput: (prevState.todoInput = ""),
-      };
+    this.setState({
+      todoInput: "",
     });
   };
   onChangeHandle = (e) => {
-    this.setState((state) => {
-      return {
-        todoInput: (state.todoInput = e.target.value),
-      };
+    this.setState({
+      todoInput: e.target.value,
     });
   };
   render() {

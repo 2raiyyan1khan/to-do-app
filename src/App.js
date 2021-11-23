@@ -17,7 +17,6 @@ class App extends React.Component {
         todos: [...state.todos, { id: id, task: todoInput }],
       };
     });
-    this.props.addTodo(todoInput);
   };
 
   removeTodo = (id) => {
@@ -27,7 +26,6 @@ class App extends React.Component {
         todos: [...todos],
       };
     });
-    this.props.removeTodo(id);
   };
 
   render() {

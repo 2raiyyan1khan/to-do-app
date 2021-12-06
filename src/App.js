@@ -33,7 +33,7 @@ class App extends React.Component {
     return (
       <div className="container">
         <div className="input-bar">
-          <h1>To-do Application</h1>
+          <h1>To Do Application</h1>
           <TodoForm submitHandle={this.submitHandle} />
         </div>
 

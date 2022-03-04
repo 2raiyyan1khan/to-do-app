@@ -18,7 +18,7 @@ class App extends React.Component {
       };
     });
   };
-
+  //remove to do
   removeTodo = (id) => {
     this.setState((prevState) => {
       let todos = prevState.todos.filter((todo) => todo.id !== id);
